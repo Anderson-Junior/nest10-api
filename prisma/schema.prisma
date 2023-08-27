@@ -11,7 +11,17 @@ datasource db {
 }
 
 model Category{
-  id            Int @id @default(autoincrement())
-  name          String @db.VarChar(255)
-  description   String? @db.Text
+  id              Int @id @default(autoincrement())
+  name            String @db.VarChar(255)
+  description     String? @db.Text
+  Video           Video[]
+}
+
+model Video{
+    id            Int @id @default(autoincrement())
+    title         String @db.VarChar(255)
+    description   String? @db.Text
+    file_path     String @db.VarChar(255)
+    category      Category @relation(fields: [category_jd], references: [id])
+    category_jd   Int
 }
